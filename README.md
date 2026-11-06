@@ -1,6 +1,6 @@
 # EIN SOF Token
 
-> **EMET — VALOA PIMEYTEEN** · [GAMMAWHITE.com](https://gammawhite.com)
+> **EMET — VALOA PIMEYTEEN** · [GAMMAWHITE.com](https://gammawhite.com) · [github.com/ninja666x/ein-sof](https://github.com/ninja666x/ein-sof)
 
 Hajautettu talousprotokolla, joka yhdistää reaaliarvon, empatian ja hyvinvoinnin.
 Ei spekulaatiota. Ei koronkiskontaa.

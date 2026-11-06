@@ -16,8 +16,8 @@ title: GAMMAWHITE — EMET
 
 ## Dokumentit
 
-- [White Paper v1.1](https://github.com/KAYTTAJA/ein-sof/blob/main/whitepaper/main.md)
-- [Lähdekoodi GitHubissa](https://github.com/KAYTTAJA/ein-sof)
+- [White Paper v1.1](https://github.com/ninja666x/ein-sof/blob/main/whitepaper/main.md)
+- [Lähdekoodi GitHubissa](https://github.com/ninja666x/ein-sof)
 
 ## Yhteystiedot
 
