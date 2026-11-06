@@ -1,7 +1,6 @@
 ;;;; ============================================================
 ;;;; EIN SOF TOKEN — Complete Implementation
-;;;; Copyright © 2026 Tuomas Johannes Karjalainen
-;;;; Luotu: 8:30 AM EET, Suomen Turku
+;;;; Copyright © 2026 Tuomas Johannes Karjalainen (s. 7.9.1971 klo 8:30, 070971-119X)
 ;;;; Common Lisp (SBCL-yhteensopiva)
 ;;;; ============================================================
 

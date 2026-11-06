@@ -1,5 +1,5 @@
 //! EIN SOF TOKEN — Solana Anchor -ohjelma
-//! Copyright © 2026 Tuomas Johannes Karjalainen — 8:30 AM EET, Turku
+//! Copyright © 2026 Tuomas Johannes Karjalainen (s. 7.9.1971 klo 8:30, 070971-119X)
 
 use anchor_lang::prelude::*;
 

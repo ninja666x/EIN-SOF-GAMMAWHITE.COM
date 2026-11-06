@@ -1,5 +1,5 @@
 // EIN SOF Anchor tests
-// Copyright © 2026 Tuomas Johannes Karjalainen
+// Copyright © 2026 Tuomas Johannes Karjalainen (s. 7.9.1971 klo 8:30, 070971-119X)
 
 import * as anchor from "@coral-xyz/anchor";
 import { Program, BN } from "@coral-xyz/anchor";

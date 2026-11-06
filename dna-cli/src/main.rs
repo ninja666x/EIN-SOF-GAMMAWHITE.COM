@@ -1,5 +1,5 @@
 //! EIN SOF DNA-CLI — Commit, don't reveal.
-//! Copyright © 2026 Tuomas Johannes Karjalainen — 8:30 AM EET, Turku
+//! Copyright © 2026 Tuomas Johannes Karjalainen (s. 7.9.1971 klo 8:30, 070971-119X)
 
 use aes_gcm::{aead::{Aead, KeyInit, OsRng}, Aes256Gcm, Nonce};
 use clap::{Parser, Subcommand};

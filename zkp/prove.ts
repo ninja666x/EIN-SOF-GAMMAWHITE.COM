@@ -1,5 +1,5 @@
 // zkp/prove.ts — EIN SOF empatia-ZKP (snarkjs / Groth16)
-// Copyright © 2026 Tuomas Johannes Karjalainen
+// Copyright © 2026 Tuomas Johannes Karjalainen (s. 7.9.1971 klo 8:30, 070971-119X)
 import { groth16 } from "snarkjs";
 
 async function proveEmpathy(

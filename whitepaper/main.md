@@ -1,8 +1,8 @@
 ---
 title: "EIN SOF TOKEN — White Paper v1.1"
 subtitle: "Reaaliarvoon sidottu, empaattinen talousprotokolla"
-author: "Tuomas Johannes Karjalainen"
-date: "8:30 AM EET, 2026 — Turku, Suomi"
+author: "Tuomas Johannes Karjalainen (s. 7.9.1971 klo 8:30, 070971-119X)"
+date: "2026 — Turku, Suomi"
 lang: fi-FI
 ---
 
@@ -569,4 +569,4 @@ Tervetuloa rakentamaan.
 
 ---
 
-Copyright © 2026 Tuomas Johannes Karjalainen · 8:30 AM EET, Turku, Suomi · Kaikki oikeudet pidätetään.
+Copyright © 2026 Tuomas Johannes Karjalainen (s. 7.9.1971 klo 8:30, 070971-119X) · Turku, Suomi · Kaikki oikeudet pidätetään.

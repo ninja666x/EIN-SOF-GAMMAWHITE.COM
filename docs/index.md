@@ -24,4 +24,4 @@ title: GAMMAWHITE — EMET
 - 📧 `hello@gammawhite.com`
 - 🌐 [gammawhite.com](https://gammawhite.com)
 
-© 2026 Tuomas Johannes Karjalainen
+© 2026 Tuomas Johannes Karjalainen (s. 7.9.1971 klo 8:30, 070971-119X)

@@ -1,5 +1,5 @@
 // EIN SOF DNA-CLI — integraatiotestit
-// Copyright © 2026 Tuomas Johannes Karjalainen
+// Copyright © 2026 Tuomas Johannes Karjalainen (s. 7.9.1971 klo 8:30, 070971-119X)
 
 use std::fs;
 use std::process::Command;

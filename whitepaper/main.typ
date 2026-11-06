@@ -1,5 +1,5 @@
 // EIN SOF White Paper v1.1 — Typst
-// Copyright © 2026 Tuomas Johannes Karjalainen
+// Copyright © 2026 Tuomas Johannes Karjalainen (s. 7.9.1971 klo 8:30, 070971-119X)
 
 #set document(
   title: "EIN SOF TOKEN — White Paper v1.1",
@@ -38,7 +38,7 @@
   #v(3em)
   #text(size: 12pt)[
     Tuomas Johannes Karjalainen \
-    _8:30 AM EET, 2026 — Turku, Suomi_
+    _s. 7.9.1971 klo 8:30 · 070971-119X · Turku, Suomi_
   ]
   #v(3em)
   #text(size: 10pt, style: "italic")[
