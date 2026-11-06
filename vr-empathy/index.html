@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EIN SOF — Voight-Kampff</title>
+  <style>
+    body { margin: 0; overflow: hidden; background: #000; }
+    #hud {
+      position: fixed; top: 12px; left: 12px; color: #0f0;
+      font-family: monospace; font-size: 13px; z-index: 10;
+      background: rgba(0,0,0,0.6); padding: 8px 12px; border-radius: 4px;
+    }
+    #question {
+      position: fixed; bottom: 80px; width: 100%; text-align: center;
+      color: #fff; font-family: monospace; font-size: 20px;
+      z-index: 10; text-shadow: 0 0 8px #000;
+    }
+  </style>
+</head>
+<body>
+  <div id="hud">E-SOF VOIGHT-KAMPFF · 0/0</div>
+  <div id="question"></div>
+  <canvas id="c"></canvas>
+  <script type="module" src="/src/main.ts"></script>
+</body>
+</html>

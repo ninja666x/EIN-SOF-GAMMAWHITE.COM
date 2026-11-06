@@ -1,0 +1,16 @@
+/target
+**/target
+.anchor/
+test-ledger/
+node_modules/
+dist/
+*.pdf
+!docs/*.pdf
+# Arkaluonteinen data — EI KOSKAAN gitiin
+*.enc
+*.key
+*.vcf
+genome*.txt
+commitment*.txt
+.env
+.DS_Store

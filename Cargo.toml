@@ -1,0 +1,11 @@
+# EIN SOF — Rust workspace (Anchor-ohjelmat)
+# Copyright © 2026 Tuomas Johannes Karjalainen
+[workspace]
+members = ["programs/*"]
+exclude = ["dna-cli", "local-economy"]
+resolver = "2"
+
+[profile.release]
+overflow-checks = true
+lto = "fat"
+codegen-units = 1
