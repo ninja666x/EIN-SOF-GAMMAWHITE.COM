@@ -1,5 +1,5 @@
 // EIN SOF — WebXR Empathy Test
-// Copyright © 2026 Tuomas Johannes Karjalainen (s. 7.9.1971 klo 8:30, 070971-119X)
+// Copyright © 2026 Tuomas Johannes Karjalainen (s. 1971-09-07 13:30 UTC / 15:30 Turku, 070971-119X)
 
 import * as THREE from "three";
 import { VRButton } from "three/examples/jsm/webxr/VRButton.js";
