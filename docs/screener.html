@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="fi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GAMMAWHITE Screener</title>
+<!-- Copyright © 2026 Tuomas Johannes Karjalainen (s. 1971-09-07 13:30 UTC / 15:30 Turku, 070971-119X) -->
+<style>
+:root{--g:#33ff66;--d:#0a3;--y:#ffd23f;--c:#3ff;--r:#ff4d4d;--o:#ff9f1c;--bg:#000}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--g);font:15px/1.3 Consolas,"Courier New",monospace}
+header{padding:8px 16px;border-bottom:1px solid var(--d)}
+h1{font-size:16px;margin:0;color:var(--c)} .sub{color:var(--d);font-size:13px}
+.demo{color:#000;background:var(--y);padding:0 6px;font-weight:bold}
+#pf{display:flex;flex-wrap:wrap;gap:4px 14px;margin-top:6px}
+#pf span{cursor:pointer} #pf span.on{background:var(--g);color:#000}
+main{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:0}
+@media (max-width:900px){main{grid-template-columns:1fr}}
+.wrap{overflow:auto;max-height:calc(100vh - 150px);border-right:1px solid var(--d)}
+table{border-collapse:collapse;width:100%}
+th{position:sticky;top:0;background:#000;color:var(--c);text-align:right;padding:3px 8px;cursor:pointer;border-bottom:1px solid var(--d);white-space:nowrap}
+th:first-child,td:first-child{text-align:left}
+td{padding:2px 8px;text-align:right;white-space:nowrap}
+tr.sel{background:var(--g);color:#000} tr.sel td,tr.sel td *{color:#000!important}
+tr:hover{background:#062}
+.up{color:var(--g)} .dn{color:var(--r)} .sig-B{color:var(--g)} .sig-S{color:var(--r)} .sig-H{color:var(--o)}
+#chartbox{padding:8px 12px}
+#chartbox h2{font-size:15px;color:var(--c);margin:4px 0}
+canvas{width:100%;height:340px;display:block;background:#000;border:1px solid var(--d)}
+#rng{width:100%;accent-color:var(--g)}
+.kv{display:grid;grid-template-columns:repeat(4,auto);gap:2px 16px;margin-top:6px;font-size:13px}
+.kv b{color:var(--y);font-weight:normal}
+footer{border-top:1px solid var(--d);padding:4px 16px;color:var(--c);font-size:13px}
+</style>
+</head>
+<body>
+<header>
+  <h1>GAMMAWHITE SCREENER ═══ EMET <span class="demo">MALLIDATA</span></h1>
+  <div class="sub">Synteettinen esimerkkidata (satunnaiskävely, kiinteä siemen) — ei oikeita kursseja, ei sijoitusneuvontaa.</div>
+  <div id="pf"></div>
+</header>
+<main>
+  <div class="wrap"><table><thead><tr id="hd"></tr></thead><tbody id="tb"></tbody></table></div>
+  <div id="chartbox">
+    <h2 id="ct"></h2>
+    <canvas id="cv" width="900" height="340"></canvas>
+    <input id="rng" type="range" min="60" max="500" value="250" aria-label="Näkyvä jakso (päiviä)">
+    <div class="kv" id="kv"></div>
+  </div>
+</main>
+<footer id="st"></footer>
+<script>
+// ---------- mallidata: deterministinen satunnaiskävely ----------
+function rnd(seed){let s=seed>>>0;return()=>{s=(s*1664525+1013904223)>>>0;return s/4294967296}}
+const SECT={BANK:["BNKA","BNKB","BNKC","BNKD","BNKE","BNKF"],PREF:["PFA-A","PFB-C","PFC-D","PFD-E","PFE-F"],TECH:["TCHA","TCHB","TCHC","TCHD"],ENER:["ENGA","ENGB","ENGC"]};
+const N=500, DATA=[];
+let seed=7091971;
+for(const [sec,syms] of Object.entries(SECT)) for(const sym of syms){
+  const r=rnd(seed++); let p=sec=="PREF"?25:20+r()*80; const vol=sec=="PREF"?0.004:sec=="TECH"?0.025:0.015, px=[];
+  for(let i=0;i<N;i++){p*=Math.exp((r()-0.5)*2*vol + (sec=="PREF"?(25-p)*0.002:0.0002)); px.push(p)}
+  DATA.push({sym,sec,px});
+}
+// ---------- indikaattorit ----------
+const sma=(a,n,i)=>{if(i<n-1)return null;let s=0;for(let k=i-n+1;k<=i;k++)s+=a[k];return s/n};
+function rsi(a,n=14){let g=0,l=0;for(let k=a.length-n;k<a.length;k++){const d=a[k]-a[k-1];d>0?g+=d:l-=d}return l==0?100:100-100/(1+g/l)}
+function stats(d){const a=d.px,i=a.length-1,last=a[i];
+  const ch1=(last/a[i-1]-1)*100, ch20=(last/a[i-20]-1)*100, ch250=(last/a[i-250]-1)*100;
+  const s50=sma(a,50,i), s200=sma(a,200,i); let v=0;for(let k=i-19;k<=i;k++){const x=Math.log(a[k]/a[k-1]);v+=x*x}
+  const vol=Math.sqrt(v/20*252)*100, r=rsi(a), z=(last-s50)/(s50*vol/100/Math.sqrt(252/50));
+  const sig= last>s200 && r<35 ? "B" : last<s200 && r>65 ? "S" : "H";
+  return {...d,last,ch1,ch20,ch250,s50,s200,vol,rsi:r,z,sig}}
+let ROWS=DATA.map(stats);
+// ---------- taulukko ----------
+const COLS=[["sym","SYMBOLI"],["sec","SEKTORI"],["last","HINTA"],["ch1","1PV %"],["ch20","20PV %"],["ch250","1V %"],["vol","VOL %"],["rsi","RSI14"],["z","Z(50)"],["sig","SIG"]];
+let sortK="ch20", sortD=-1, sel=0, filt=null, view=[];
+const hd=document.getElementById('hd'), tb=document.getElementById('tb'), pf=document.getElementById('pf'), st=document.getElementById('st');
+const f=(k,v)=>k=="sym"||k=="sec"?v:k=="sig"?`<span class="sig-${v}">${{B:"OSTO",S:"MYYNTI",H:"PIDÄ"}[v]}</span>`:k.startsWith("ch")?`<span class="${v>=0?'up':'dn'}">${v>=0?'+':''}${v.toFixed(2)}</span>`:v.toFixed(2);
+function draw(){
+  view=ROWS.filter(r=>!filt||r.sec==filt).sort((a,b)=>(a[sortK]>b[sortK]?1:-1)*sortD);
+  hd.innerHTML=COLS.map(([k,t])=>`<th data-k="${k}">${t}${k==sortK?(sortD>0?' ▲':' ▼'):''}</th>`).join('');
+  tb.innerHTML=view.map((r,i)=>`<tr class="${i==sel?'sel':''}" data-i="${i}">${COLS.map(([k])=>`<td>${f(k,r[k])}</td>`).join('')}</tr>`).join('');
+  const secs=Object.keys(SECT);
+  pf.innerHTML=secs.map((s,i)=>`<span data-s="${s}" class="${filt==s?'on':''}">F${i+1}=${s}</span>`).join('')+`<span data-s="" class="${filt?'':'on'}">F10=KAIKKI</span>`;
+  st.textContent=`RIVEJÄ ${view.length} · ↑↓ SELAA · KLIKKAA SARAKETTA = LAJITTELE · F1-F4 SEKTORI · F10 KAIKKI · LIUKU = JAKSO · SIG: OSTO kun hinta>SMA200 ja RSI<35, MYYNTI kun hinta<SMA200 ja RSI>65`;
+  chart(); const e=tb.querySelector('tr.sel'); if(e) e.scrollIntoView({block:'nearest'})}
+hd.onclick=e=>{const k=e.target.closest('th')?.dataset.k; if(!k)return; sortD=k==sortK?-sortD:-1; sortK=k; sel=0; draw()};
+tb.onclick=e=>{const tr=e.target.closest('tr'); if(tr){sel=+tr.dataset.i; draw()}};
+pf.onclick=e=>{const s=e.target.closest('span'); if(s&&'s' in s.dataset){filt=s.dataset.s||null; sel=0; draw()}};
+document.onkeydown=e=>{const m=/^F(\d+)$/.exec(e.key);
+  if(m){e.preventDefault();const n=+m[1],s=Object.keys(SECT);filt=n<=s.length?s[n-1]:n==10?null:filt;sel=0;draw();return}
+  if(e.key=="ArrowDown"){e.preventDefault();sel=Math.min(view.length-1,sel+1);draw()}
+  if(e.key=="ArrowUp"){e.preventDefault();sel=Math.max(0,sel-1);draw()}};
+document.getElementById('rng').oninput=chart;
+// ---------- kaavio ----------
+function chart(){
+  const r=view[sel]; if(!r)return; const cv=document.getElementById('cv'), x=cv.getContext('2d');
+  const W=cv.width=cv.clientWidth*devicePixelRatio, H=cv.height=340*devicePixelRatio; x.scale(devicePixelRatio,devicePixelRatio);
+  const w=W/devicePixelRatio, h=340, n=+document.getElementById('rng').value, a=r.px, s=a.length-n;
+  const s50=a.map((_,i)=>sma(a,50,i)), s200=a.map((_,i)=>sma(a,200,i));
+  const vals=[...a.slice(s),...s50.slice(s).filter(v=>v),...s200.slice(s).filter(v=>v)], lo=Math.min(...vals), hi=Math.max(...vals);
+  const X=i=>40+(i-s)/(n-1)*(w-50), Y=v=>10+(hi-v)/(hi-lo||1)*(h-30);
+  x.fillStyle="#000";x.fillRect(0,0,w,h);x.strokeStyle="#063";x.lineWidth=1;x.font="11px Consolas";x.fillStyle="#0a3";
+  for(let k=0;k<=4;k++){const v=lo+(hi-lo)*k/4,y=Y(v);x.beginPath();x.moveTo(40,y);x.lineTo(w-10,y);x.stroke();x.fillText(v.toFixed(2),2,y+4)}
+  const line=(arr,col,lw)=>{x.strokeStyle=col;x.lineWidth=lw;x.beginPath();let st=false;for(let i=s;i<a.length;i++){if(arr[i]==null)continue;st?x.lineTo(X(i),Y(arr[i])):x.moveTo(X(i),Y(arr[i]));st=true}x.stroke()};
+  line(s200,"#ff9f1c",1.2); line(s50,"#3ff",1.2); line(a,"#33ff66",1.6);
+  x.fillStyle="#3ff";x.fillText("SMA50",w-120,14);x.fillStyle="#ff9f1c";x.fillText("SMA200",w-70,14);
+  document.getElementById('ct').textContent=`${r.sym} · ${r.sec} · ${n} PV`;
+  document.getElementById('kv').innerHTML=[["HINTA",r.last],["SMA50",r.s50],["SMA200",r.s200],["RSI14",r.rsi],["VOL %",r.vol],["Z(50)",r.z],["20PV %",r.ch20],["1V %",r.ch250]].map(([k,v])=>`<span>${k} <b>${v.toFixed(2)}</b></span>`).join('')}
+addEventListener('resize',chart);
+draw();
+</script>
+</body>
+</html>

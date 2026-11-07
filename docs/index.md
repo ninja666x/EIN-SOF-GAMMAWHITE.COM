@@ -16,8 +16,11 @@ title: GAMMAWHITE — EMET
 
 ## Dokumentit
 
-- [White Paper v1.1](https://github.com/ninja666x/ein-sof/blob/main/whitepaper/main.md)
-- [Lähdekoodi GitHubissa](https://github.com/ninja666x/ein-sof)
+- [White Paper v1.1](whitepaper.html)
+- [Screener (TN3270, mallidata)](screener.html)
+- [Hedgehog Oy · Sagittarius A (luonnos, FI/EN/RU/AR)](hedgehog.html)
+- [Sopimuspohja EN | AR (luonnos)](sopimus.html)
+- [Lähdekoodi GitHubissa](https://github.com/ninja666x/EIN-SOF-GAMMAWHITE.COM)
 
 ## Yhteystiedot
 

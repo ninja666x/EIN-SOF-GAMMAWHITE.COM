@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bilingual Agreement Template</title>
+<!-- Copyright © 2026 Tuomas Johannes Karjalainen (s. 1971-09-07 13:30 UTC / 15:30 Turku, 070971-119X) -->
+<style>
+:root{--ink:#111;--muted:#666;--line:#bbb;--bg:#fff;--accent:#0a3}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--ink:#e8e8e8;--muted:#9a9a9a;--line:#444;--bg:#111;--accent:#33ff66}}
+:root[data-theme="dark"]{--ink:#e8e8e8;--muted:#9a9a9a;--line:#444;--bg:#111;--accent:#33ff66}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.55 Georgia,"Times New Roman",serif}
+.page{max-width:1100px;margin:0 auto;padding:24px 16px}
+.draft{background:#ffd23f;color:#000;font:bold 13px Arial,sans-serif;padding:6px 10px;margin-bottom:16px;text-align:center}
+h1{font-size:20px;text-align:center;margin:0 0 4px}
+.sub{text-align:center;color:var(--muted);font-size:13px;margin-bottom:18px}
+.grid{display:grid;grid-template-columns:1fr 1fr;border-top:2px solid var(--ink)}
+.cell{padding:10px 14px;border-bottom:1px solid var(--line)}
+.en{border-right:1px solid var(--line)}
+.ar{direction:rtl;text-align:right;font-family:"Amiri","Traditional Arabic","Arial",serif;font-size:17px}
+.no{color:var(--accent);font:bold 13px Arial,sans-serif;margin-bottom:4px}
+.ph{background:rgba(255,210,63,.35);padding:0 3px;border-radius:2px}
+.sig{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:28px}
+.sig div{border-top:1px solid var(--ink);padding-top:6px;font-size:13px}
+@media (max-width:720px){.grid{grid-template-columns:1fr}.en{border-right:0}.sig{grid-template-columns:1fr}}
+@media print{.draft{display:none}body{background:#fff;color:#000}.ph{background:none;border-bottom:1px dotted #000}}
+</style>
+</head>
+<body><div class="page">
+<div class="draft">LUONNOS / DRAFT — pohja; täytä [hakasulut]; juristin (Hannah Terhune) hyväksyntä ennen allekirjoitusta. Arabiankielinen teksti on tarkistettava valantehneellä kääntäjällä.</div>
+<h1>SUBSCRIPTION AGREEMENT &nbsp;·&nbsp; اتفاقية اكتتاب</h1>
+<div class="sub">[Company / الشركة] · Agreement No. <span class="ph">[____]</span> · Date <span class="ph">[YYYY-MM-DD]</span></div>
+
+<div class="grid" id="g"></div>
+
+<div class="sig">
+  <div>For the Company / عن الشركة<br><br>Name / الاسم: <span class="ph">[____]</span><br>Title / الصفة: <span class="ph">[____]</span><br>Date / التاريخ: <span class="ph">[____]</span></div>
+  <div>Investor / المستثمر<br><br>Name / الاسم: <span class="ph">[____]</span><br>ID/Passport / رقم الهوية: <span class="ph">[____]</span><br>Date / التاريخ: <span class="ph">[____]</span></div>
+</div>
+</div>
+<script>
+// Rinnakkaiset kohdat: [englanti, arabia]. Lisää/muokkaa kohtia tähän — numerointi tulee automaattisesti.
+const K=[
+ ["<b>Parties.</b> This Agreement is made between <span class='ph'>[Company name, registration no., address]</span> (the “Company”) and <span class='ph'>[Investor name, address]</span> (the “Investor”).",
+  "<b>الأطراف.</b> أُبرمت هذه الاتفاقية بين <span class='ph'>[اسم الشركة، رقم السجل، العنوان]</span> («الشركة») و<span class='ph'>[اسم المستثمر، العنوان]</span> («المستثمر»)."],
+ ["<b>Subscription.</b> The Investor subscribes for <span class='ph'>[number / amount]</span> at a price of <span class='ph'>[price]</span>, total <span class='ph'>[amount, currency]</span>. Minimum investment: <span class='ph'>[amount]</span>.",
+  "<b>الاكتتاب.</b> يكتتب المستثمر في <span class='ph'>[العدد / المبلغ]</span> بسعر <span class='ph'>[السعر]</span>، بإجمالي <span class='ph'>[المبلغ، العملة]</span>. الحد الأدنى للاستثمار: <span class='ph'>[المبلغ]</span>."],
+ ["<b>Investor status.</b> The Investor represents that they are an accredited investor (income, net worth, or a license in good standing: FINRA Series 7, 65 or 82) and will provide verification documents on request.",
+  "<b>صفة المستثمر.</b> يقرّ المستثمر بأنه مستثمر معتمد (بموجب الدخل أو صافي الثروة أو ترخيص سارٍ: FINRA Series 7 أو 65 أو 82)، ويتعهد بتقديم مستندات التحقق عند الطلب."],
+ ["<b>KYC / AML.</b> The Investor will provide identity documents, source of funds, and consents to sanctions (OFAC, EU, UN) and PEP screening. The Company may refuse any subscription.",
+  "<b>اعرف عميلك / مكافحة غسل الأموال.</b> يقدّم المستثمر مستندات الهوية ومصدر الأموال، ويوافق على الفحص وفق قوائم العقوبات (OFAC والاتحاد الأوروبي والأمم المتحدة) وفحص الأشخاص المعرّضين سياسياً. يحق للشركة رفض أي اكتتاب."],
+ ["<b>Risk.</b> The investment is illiquid and speculative; the Investor may lose the entire amount. Past performance does not guarantee future results.",
+  "<b>المخاطر.</b> الاستثمار غير سائل وينطوي على مضاربة، وقد يخسر المستثمر كامل المبلغ. الأداء السابق لا يضمن النتائج المستقبلية."],
+ ["<b>Confidentiality.</b> Each party keeps the other party’s non-public information confidential for <span class='ph'>[__]</span> years.",
+  "<b>السرية.</b> يحافظ كل طرف على سرية المعلومات غير العامة للطرف الآخر لمدة <span class='ph'>[__]</span> سنوات."],
+ ["<b>Governing law and disputes.</b> This Agreement is governed by the laws of <span class='ph'>[State of Florida, USA]</span>. Disputes: <span class='ph'>[court / arbitration, seat]</span>.",
+  "<b>القانون الواجب التطبيق والنزاعات.</b> تخضع هذه الاتفاقية لقوانين <span class='ph'>[ولاية فلوريدا، الولايات المتحدة]</span>. النزاعات: <span class='ph'>[المحكمة / التحكيم، المقر]</span>."],
+ ["<b>Language.</b> This Agreement is executed in English and Arabic. <b>In case of any discrepancy between the English and Arabic texts, the English text shall prevail.</b>",
+  "<b>اللغة.</b> حُررت هذه الاتفاقية باللغتين الإنجليزية والعربية. <b>في حال وجود أي تعارض بين النصين الإنجليزي والعربي، يُعتمد النص الإنجليزي.</b>"],
+];
+document.getElementById('g').innerHTML=K.map(([en,ar],i)=>
+ `<div class="cell en"><div class="no">${i+1}.</div>${en}</div><div class="cell ar"><div class="no">${(i+1).toLocaleString('ar-EG')}.</div>${ar}</div>`).join('');
+</script>
+</body></html>

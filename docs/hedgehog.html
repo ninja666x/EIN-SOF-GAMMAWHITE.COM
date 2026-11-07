@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="fi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hedgehog Oy · Sagittarius A</title>
+<!-- Copyright © 2026 Tuomas Johannes Karjalainen (s. 1971-09-07 13:30 UTC / 15:30 Turku, 070971-119X) -->
+<style>
+:root{--g:#33ff66;--d:#0a3;--y:#ffd23f;--c:#3ff;--bg:#000;--ink:#33ff66}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 Consolas,"Courier New",monospace}
+[dir=rtl] body,[dir=rtl]{font-family:"Amiri","Traditional Arabic",Tahoma,sans-serif}
+.draft{background:var(--y);color:#000;font-weight:bold;padding:6px 16px;text-align:center}
+header,section,footer{max-width:980px;margin:0 auto;padding:12px 16px}
+header{border-bottom:1px solid var(--d)}
+h1{color:var(--c);font-size:20px;margin:6px 0} h2{color:var(--c);font-size:16px;margin:18px 0 6px}
+nav{display:flex;flex-wrap:wrap;gap:6px 16px} nav a,.lang button{color:var(--y);text-decoration:none;background:none;border:0;font:inherit;cursor:pointer;padding:0}
+.lang{display:flex;gap:10px;justify-content:flex-end} .lang button.on{background:var(--g);color:#000;padding:0 6px}
+.ph{background:#332;color:var(--y);padding:0 4px}
+.years{display:flex;flex-wrap:wrap;gap:6px 12px;margin:8px 0} .years a{color:var(--g);cursor:pointer} .years a.on{background:var(--g);color:#000;padding:0 4px}
+canvas{width:100%;height:280px;border:1px solid var(--d);display:block}
+.calc{display:grid;grid-template-columns:auto 1fr;gap:6px 12px;max-width:520px}
+input{background:#000;color:var(--y);border:0;border-bottom:1px solid var(--d);font:inherit;width:100%}
+ul{padding-inline-start:20px} li{margin:4px 0}
+footer{border-top:1px solid var(--d);color:var(--d);font-size:13px}
+</style>
+</head>
+<body>
+<div class="draft" data-t="draft"></div>
+<header>
+  <div class="lang"><button data-l="fi">FI</button><button data-l="en">EN</button><button data-l="ru">RU</button><button data-l="ar">AR</button></div>
+  <h1>HEDGEHOG OY · SAGITTARIUS A</h1>
+  <nav><a href="#yhtio" data-t="n1"></a><a href="#tuotto" data-t="n2"></a><a href="#laskuri" data-t="n3"></a><a href="#ehdot" data-t="n4"></a><a href="#kyc" data-t="n5"></a><a href="sopimus.html" data-t="n6"></a><a href="#yhteys" data-t="n7"></a></nav>
+</header>
+<section id="yhtio"><h2 data-t="h1"></h2><p data-t="p1"></p><p data-t="p2"></p></section>
+<section id="tuotto"><h2 data-t="h2"></h2><p data-t="p3"></p>
+  <div class="years" id="yrs"></div><canvas id="cv"></canvas>
+  <p data-t="p4"></p></section>
+<section id="laskuri"><h2 data-t="h3"></h2>
+  <div class="calc"><label data-t="c1"></label><input placeholder="dd.mm.yyyy" disabled><label data-t="c2"></label><input placeholder="€" disabled></div>
+  <p class="ph" data-t="c3"></p></section>
+<section id="ehdot"><h2 data-t="h4"></h2><ul><li data-t="e1"></li><li data-t="e2"></li><li data-t="e3"></li><li data-t="e4"></li></ul></section>
+<section id="kyc"><h2 data-t="h5"></h2><ul><li data-t="k1"></li><li data-t="k2"></li><li data-t="k3"></li><li data-t="k4"></li></ul></section>
+<section id="yhteys"><h2 data-t="h6"></h2><p>hello@gammawhite.com · <span class="ph">[puhelin / phone]</span></p></section>
+<footer><p data-t="f1"></p><p>© 2026 Tuomas Johannes Karjalainen (s. 1971-09-07 13:30 UTC / 15:30 Turku, 070971-119X)</p></footer>
+<script>
+const P='<span class="ph">[…]</span>';
+const T={
+fi:{draft:"LUONNOS — ei julkaistu tarjous. Luvut ja tekstit ovat paikkamerkkejä, kunnes juristi on hyväksynyt sisällön.",
+ n1:"Yhtiö",n2:"Tuotot",n3:"Laskuri",n4:"Ehdot",n5:"KYC",n6:"Sopimus (EN|AR)",n7:"Yhteystiedot",
+ h1:"Yhtiö",p1:"Hedgehog Oy on "+P+" perustettu sijoitusyhtiö. Sagittarius A on yhtiön kvantitatiivinen kaupankäyntijärjestelmä (Python, MySQL, IBKR).",
+ p2:"Strategia: "+P,h2:"Tuottohistoria",p3:"Käyrä näyttää salkun arvon kulujen jälkeen vertailuindeksiä vastaan. Kaikki vuodet näytetään.",
+ p4:"Aikaisempi tuotto ei ole tae tulevasta. Tuotto: aikapainotettu, kulujen jälkeen, ennen veroja.",
+ h3:"Sijoituslaskuri",c1:"Aloituspäivä",c2:"Sijoitus",c3:"Laskuri aktivoidaan, kun hyväksytyt luvut on julkaistu.",
+ h4:"Ehdot",e1:"Vain akkreditoiduille sijoittajille (tulot, varallisuus tai voimassa oleva Series 7, 65 tai 82 -lisenssi).",
+ e2:"Minimisijoitus: "+P,e3:"Merkintä Reg D 506(c) -poikkeuksella; Form D jätetään SEC:lle.",e4:"Tarjous ei koske Venäjän kansalaisia tai Venäjällä asuvia (EU-asetus 833/2014) eikä pakotelistoilla olevia.",
+ h5:"Tunne asiakkaasi (KYC)",k1:"Henkilöllisyys: passi tai ajokortti + kasvokuva",k2:"Pakote- ja PEP-tarkistus (OFAC, EU, YK)",k3:"Varojen alkuperän selvitys",k4:"Akkreditoinnin todentaminen (veroilmoitus, CPA-/asianajajakirje tai lisenssinumero)",
+ h6:"Yhteystiedot",f1:"Vastuunrajoitus: tämä sivu ei ole sijoitusneuvontaa eikä tarjous yleisölle. Sijoittamiseen liittyy riski koko pääoman menettämisestä."},
+en:{draft:"DRAFT — not a published offering. Figures and text are placeholders until approved by counsel.",
+ n1:"Company",n2:"Performance",n3:"Calculator",n4:"Terms",n5:"KYC",n6:"Agreement (EN|AR)",n7:"Contact",
+ h1:"Company",p1:"Hedgehog Oy is an investment company founded in "+P+". Sagittarius A is the company’s quantitative trading system (Python, MySQL, IBKR).",
+ p2:"Strategy: "+P,h2:"Performance history",p3:"The chart shows portfolio value after fees against the benchmark. All years are shown.",
+ p4:"Past performance does not guarantee future results. Returns: time-weighted, net of fees, before taxes.",
+ h3:"Investment calculator",c1:"Start date",c2:"Amount",c3:"The calculator is enabled once approved figures are published.",
+ h4:"Terms",e1:"Accredited investors only (income, net worth, or a FINRA Series 7, 65 or 82 license in good standing).",
+ e2:"Minimum investment: "+P,e3:"Offered under Reg D Rule 506(c); Form D filed with the SEC.",e4:"Not offered to Russian nationals or residents (EU Regulation 833/2014) or to sanctioned persons.",
+ h5:"Know your customer (KYC)",k1:"Identity: passport or driver’s license + face photo",k2:"Sanctions and PEP screening (OFAC, EU, UN)",k3:"Source of funds",k4:"Accreditation verification (tax return, CPA/attorney letter, or license number)",
+ h6:"Contact",f1:"Disclaimer: this page is not investment advice or a public offering. Investing involves the risk of losing all capital."},
+ru:{draft:"ЧЕРНОВИК — не является опубликованным предложением. Цифры и тексты — заполнители до одобрения юристом.",
+ n1:"Компания",n2:"Доходность",n3:"Калькулятор",n4:"Условия",n5:"KYC",n6:"Договор (EN|AR)",n7:"Контакты",
+ h1:"Компания",p1:"Hedgehog Oy — инвестиционная компания, основанная в "+P+". Sagittarius A — количественная торговая система компании (Python, MySQL, IBKR).",
+ p2:"Стратегия: "+P,h2:"История доходности",p3:"График показывает стоимость портфеля после комиссий в сравнении с эталонным индексом. Показаны все годы.",
+ p4:"Прошлая доходность не гарантирует будущих результатов. Доходность взвешена по времени, после комиссий, до налогов.",
+ h3:"Инвестиционный калькулятор",c1:"Дата начала",c2:"Сумма",c3:"Калькулятор будет включён после публикации утверждённых данных.",
+ h4:"Условия",e1:"Только для аккредитованных инвесторов (доход, капитал или действующая лицензия FINRA Series 7, 65 или 82).",
+ e2:"Минимальная инвестиция: "+P,e3:"Предложение по правилу Reg D 506(c); форма D подаётся в SEC.",e4:"Предложение не распространяется на граждан и резидентов России (Регламент ЕС 833/2014) и лиц под санкциями.",
+ h5:"Знай своего клиента (KYC)",k1:"Личность: паспорт или водительское удостоверение + фото лица",k2:"Проверка по санкционным спискам и PEP (OFAC, ЕС, ООН)",k3:"Источник средств",k4:"Подтверждение аккредитации (налоговая декларация, письмо CPA/юриста или номер лицензии)",
+ h6:"Контакты",f1:"Отказ от ответственности: эта страница не является инвестиционной консультацией или публичной офертой. Инвестиции сопряжены с риском потери всего капитала."},
+ar:{draft:"مسودة — ليست عرضاً منشوراً. الأرقام والنصوص مؤقتة إلى حين موافقة المستشار القانوني.",
+ n1:"الشركة",n2:"الأداء",n3:"الحاسبة",n4:"الشروط",n5:"اعرف عميلك",n6:"الاتفاقية (EN|AR)",n7:"اتصل بنا",
+ h1:"الشركة",p1:"Hedgehog Oy شركة استثمار تأسست في "+P+". Sagittarius A هو نظام التداول الكمي للشركة (Python وMySQL وIBKR).",
+ p2:"الاستراتيجية: "+P,h2:"سجل الأداء",p3:"يعرض الرسم قيمة المحفظة بعد الرسوم مقارنةً بالمؤشر المرجعي. تُعرض جميع السنوات.",
+ p4:"الأداء السابق لا يضمن النتائج المستقبلية. العائد مرجّح زمنياً، بعد الرسوم وقبل الضرائب.",
+ h3:"حاسبة الاستثمار",c1:"تاريخ البدء",c2:"المبلغ",c3:"تُفعَّل الحاسبة بعد نشر الأرقام المعتمدة.",
+ h4:"الشروط",e1:"للمستثمرين المعتمدين فقط (الدخل أو صافي الثروة أو ترخيص سارٍ FINRA Series 7 أو 65 أو 82).",
+ e2:"الحد الأدنى للاستثمار: "+P,e3:"يُطرح بموجب القاعدة 506(c) من اللائحة D؛ يُقدَّم النموذج D إلى هيئة الأوراق المالية الأمريكية.",e4:"العرض غير موجّه لمواطني روسيا أو المقيمين فيها (لائحة الاتحاد الأوروبي 833/2014) أو للأشخاص الخاضعين للعقوبات.",
+ h5:"اعرف عميلك",k1:"الهوية: جواز السفر أو رخصة القيادة + صورة الوجه",k2:"الفحص وفق قوائم العقوبات والأشخاص المعرّضين سياسياً (OFAC، الاتحاد الأوروبي، الأمم المتحدة)",k3:"مصدر الأموال",k4:"التحقق من الاعتماد (الإقرار الضريبي، خطاب محاسب أو محامٍ، أو رقم الترخيص)",
+ h6:"اتصل بنا",f1:"إخلاء المسؤولية: هذه الصفحة ليست نصيحة استثمارية ولا عرضاً عاماً. ينطوي الاستثمار على خطر خسارة رأس المال بالكامل."}};
+function setLang(l){document.documentElement.lang=l;document.documentElement.dir=l=="ar"?"rtl":"ltr";
+ document.querySelectorAll('[data-t]').forEach(e=>e.innerHTML=T[l][e.dataset.t]||"");
+ document.querySelectorAll('.lang button').forEach(b=>b.classList.toggle('on',b.dataset.l==l));
+ try{localStorage.setItem('gw_lang',l)}catch(e){} drawChart()}
+document.querySelector('.lang').onclick=e=>{const b=e.target.closest('button');if(b)setLang(b.dataset.l)};
+const yrs=document.getElementById('yrs'); let yr="ALL";
+yrs.innerHTML=[...Array(17)].map((_,i)=>`<a data-y="${2009+i}">${2009+i}</a>`).join('')+'<a data-y="ALL">ALL</a>';
+yrs.onclick=e=>{const a=e.target.closest('a');if(a){yr=a.dataset.y;drawChart()}};
+function drawChart(){yrs.querySelectorAll('a').forEach(a=>a.classList.toggle('on',a.dataset.y==yr));
+ const cv=document.getElementById('cv'),x=cv.getContext('2d'),w=cv.clientWidth,h=280,r=devicePixelRatio;cv.width=w*r;cv.height=h*r;x.scale(r,r);
+ x.fillStyle='#000';x.fillRect(0,0,w,h);x.strokeStyle='#063';for(let k=1;k<5;k++){x.beginPath();x.moveTo(0,k*h/5);x.lineTo(w,k*h/5);x.stroke()}
+ x.fillStyle='#ffd23f';x.font='14px Consolas';x.textAlign='center';x.fillText('[ DATA: '+(yr=="ALL"?"2009–2025":yr)+' — julkaistaan juristin hyväksynnän jälkeen ]',w/2,h/2)}
+addEventListener('resize',drawChart);
+let l0='fi';try{l0=localStorage.getItem('gw_lang')||'fi'}catch(e){} setLang(l0);
+</script>
+</body></html>
