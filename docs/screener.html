@@ -74,7 +74,8 @@ let ROWS=DATA.map(stats);
 const COLS=[["sym","SYMBOLI"],["sec","SEKTORI"],["last","HINTA"],["ch1","1PV %"],["ch20","20PV %"],["ch250","1V %"],["vol","VOL %"],["rsi","RSI14"],["z","Z(50)"],["sig","SIG"]];
 let sortK="ch20", sortD=-1, sel=0, filt=null, view=[];
 const hd=document.getElementById('hd'), tb=document.getElementById('tb'), pf=document.getElementById('pf'), st=document.getElementById('st');
-const f=(k,v)=>k=="sym"||k=="sec"?v:k=="sig"?`<span class="sig-${v}">${{B:"OSTO",S:"MYYNTI",H:"PIDÄ"}[v]}</span>`:k.startsWith("ch")?`<span class="${v>=0?'up':'dn'}">${v>=0?'+':''}${v.toFixed(2)}</span>`:v.toFixed(2);
+const SIGN={B:"OSTO",S:"MYYNTI",H:"PIDÄ"};
+const f=(k,v)=>k=="sym"||k=="sec"?v:k=="sig"?`<span class="sig-${v}">${SIGN[v]}</span>`:k.startsWith("ch")?`<span class="${v>=0?'up':'dn'}">${v>=0?'+':''}${v.toFixed(2)}</span>`:v.toFixed(2);
 function draw(){
   view=ROWS.filter(r=>!filt||r.sec==filt).sort((a,b)=>(a[sortK]>b[sortK]?1:-1)*sortD);
   hd.innerHTML=COLS.map(([k,t])=>`<th data-k="${k}">${t}${k==sortK?(sortD>0?' ▲':' ▼'):''}</th>`).join('');

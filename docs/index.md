@@ -19,6 +19,7 @@ title: GAMMAWHITE — EMET
 - [White Paper v1.1](whitepaper.html)
 - [Screener (TN3270, mallidata)](screener.html)
 - [Hedgehog Oy · Sagittarius A (luonnos, FI/EN/RU/AR)](hedgehog.html)
+- [Historia · Hedgehog Oy → Porcupine (FI/EN)](historia.html)
 - [Sopimuspohja EN | AR (luonnos)](sopimus.html)
 - [Lähdekoodi GitHubissa](https://github.com/ninja666x/EIN-SOF-GAMMAWHITE.COM)
 
